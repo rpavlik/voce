@@ -1,0 +1,14 @@
+// Ogre overlay scripts
+General/Crosshair
+{
+    zorder 200
+
+    container Panel(General/Dot)
+    {
+        left 0.495
+        top 0.494
+        width 0.01
+        height 0.012
+        material Special/Crosshair
+    }
+}

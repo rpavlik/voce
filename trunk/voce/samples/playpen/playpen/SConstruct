@@ -1,0 +1,34 @@
+import os
+
+sources = Split("""
+main.cpp
+""")
+
+# Setup options
+opts = Options()
+opts.AddOptions(
+	PathOption('extra_include_path', 'Additional include directory', '.'), 
+	PathOption('extra_lib_path', 'Additional lib directory', '.'))
+
+env = Environment(
+	ENV = os.environ,
+	LIBS = ['opal-ode', 'OgreMain'], 
+	options = opts
+)
+
+env.Append(CPPPATH = env['extra_include_path'], 
+	LIBPATH = env['extra_lib_path'])
+
+if env['PLATFORM'] != 'win32':
+	env.Append(CXXFLAGS = ['-DGCC_3_1', '-DEXT_HASH'])
+
+# Build the executable.
+exe = env.Program('playpen', sources)
+
+# Install the executable.
+inst = env.Install('../bin/release', exe)
+
+# Tell scons to build and install the executable by default.
+env.Default(exe)
+env.Default(inst)
+

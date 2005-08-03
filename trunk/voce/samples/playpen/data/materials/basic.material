@@ -1,0 +1,215 @@
+material Plastic/Red
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 1 0 0
+			diffuse 1 0 0
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Plastic/Green
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 0 1 0
+			diffuse 0 1 0
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Plastic/Blue
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 0 0 1
+			diffuse 0 0 1
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Plastic/LightBlue
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 0.5 0.5 1
+			diffuse 0.5 0.5 1
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Plastic/Orange
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 1 0.4 0
+			diffuse 1 0.4 0
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Plastic/Yellow
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 1 1 0
+			diffuse 1 1 0
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Plastic/Purple
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 0.5 0 1
+			diffuse 0.5 0 1
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Plastic/Gray
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 0.5 0.5 0.5
+			diffuse 0.5 0.5 0.5
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Plastic/LightGray
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 0.8 0.8 0.8
+			diffuse 0.8 0.8 0.8
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Plastic/DarkGray
+{
+	receive_shadows on
+
+	technique
+	{
+		pass
+		{
+			ambient 0.3 0.3 0.3
+			diffuse 0.3 0.3 0.3
+			specular 0.2 0.2 0.2 50
+			emissive 0 0 0
+		}
+	}
+}
+
+material Unlit/Yellow
+{
+	receive_shadows off
+
+	technique
+	{
+		pass
+		{
+			lighting on
+
+			ambient 0 0 0
+			diffuse 0 0 0
+			specular 0 0 0 0
+			emissive 1 1 0
+		}
+	}
+}
+
+material Unlit/White
+{
+	receive_shadows off
+
+	technique
+	{
+		pass
+		{
+			lighting on
+
+			ambient 0 0 0
+			diffuse 0 0 0
+			specular 0 0 0 0
+			emissive 1 1 1
+		}
+	}
+}
+
+material Special/Crosshair
+{
+	receive_shadows off
+
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend colour_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture crosshair.png
+			}
+		}
+	}
+}

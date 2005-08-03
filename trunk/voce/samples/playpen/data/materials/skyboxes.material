@@ -1,0 +1,17 @@
+material Skyboxes/Gray
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			depth_write off
+
+			texture_unit
+			{
+				cubic_texture gray_fr.jpg gray_bk.jpg gray_lf.jpg gray_rt.jpg gray_up.jpg gray_dn.jpg separateUV
+				tex_address_mode clamp
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+#JSGF V1.0;
+
+/**
+ * JSGF Digits Grammar file
+ */
+
+grammar objects;
+
+public <objects> = <colors> <objectTypes>;
+
+public <miscellaneous> = (quit | reset);
+
+<colors> = (yellow | red | blue | green | purple | orange);
+
+<objectTypes> = (box | sphere | wall | tower | character);

@@ -1,0 +1,396 @@
+<?xml version="1.0" ?>
+<OpalBlueprint>
+	<Solid>
+		<Name value="head"/>
+		<Offset>
+			<Transform type="translate" x="0.0" y="1.02" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="1.0" y="0.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.065" length="0.02"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="neck"/>
+		<Type value="hinge"/>
+		<References solid0="upper torso" solid1="head"/>
+		<Anchor x="0.0" y="0.95" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-45.0"/>
+			<LimitHigh value="45.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="upper torso"/>
+		<Offset>
+			<Transform type="translate" x="0.0" y="0.9" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="0.0" y="1.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.045" length="0.25"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="left shoulder"/>
+		<Type value="universal"/>
+		<BreakMode value="threshold"/>
+		<BreakThresh value="10000.0"/>
+		<References solid0="upper left arm" solid1="upper torso"/>
+		<Anchor x="0.16" y="0.9" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-160.0"/>
+			<LimitHigh value="80.0"/>
+		</Axis>
+		<Axis>
+			<AxisNum value="1"/>
+			<Direction x="0.0" y="0.0" z="1.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-45.0"/>
+			<LimitHigh value="170.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="upper left arm"/>
+		<Offset>
+			<Transform type="translate" x="0.16" y="0.8" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="1.0" y="0.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.03" length="0.2"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="left elbow"/>
+		<Type value="hinge"/>
+		<References solid0="lower left arm" solid1="upper left arm"/>
+		<Anchor x="0.16" y="0.7" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-120.0"/>
+			<LimitHigh value="0.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="lower left arm"/>
+		<Offset>
+			<Transform type="translate" x="0.16" y="0.6" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="1.0" y="0.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.027" length="0.2"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="left wrist"/>
+		<Type value="hinge"/>
+		<References solid0="left hand" solid1="lower left arm"/>
+		<Anchor x="0.16" y="0.5" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="0.0" y="0.0" z="1.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-85.0"/>
+			<LimitHigh value="85.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="left hand"/>
+		<Offset>
+			<Transform type="translate" x="0.16" y="0.45" z="0.0"/>
+		</Offset>
+		<Shape type="box">
+			<Dimensions x="0.02" y="0.09" z="0.06"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="right shoulder"/>
+		<Type value="universal"/>
+		<BreakMode value="threshold"/>
+		<BreakThresh value="10000.0"/>
+		<References solid0="upper right arm" solid1="upper torso"/>
+		<Anchor x="-0.16" y="0.9" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-160.0"/>
+			<LimitHigh value="80.0"/>
+		</Axis>
+		<Axis>
+			<AxisNum value="1"/>
+			<Direction x="0.0" y="0.0" z="1.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-170.0"/>
+			<LimitHigh value="45.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="upper right arm"/>
+		<Offset>
+			<Transform type="translate" x="-0.16" y="0.8" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="1.0" y="0.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.03" length="0.2"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="right elbow"/>
+		<Type value="hinge"/>
+		<References solid0="lower right arm" solid1="upper right arm"/>
+		<Anchor x="-0.16" y="0.7" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-120.0"/>
+			<LimitHigh value="0.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="lower right arm"/>
+		<Offset>
+			<Transform type="translate" x="-0.16" y="0.6" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="1.0" y="0.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.027" length="0.2"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="right wrist"/>
+		<Type value="hinge"/>
+		<References solid0="right hand" solid1="lower right arm"/>
+		<Anchor x="-0.16" y="0.5" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="0.0" y="0.0" z="1.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-85.0"/>
+			<LimitHigh value="85.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="right hand"/>
+		<Offset>
+			<Transform type="translate" x="-0.16" y="0.45" z="0.0"/>
+		</Offset>
+		<Shape type="box">
+			<Dimensions x="0.02" y="0.09" z="0.06"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="chest joint"/>
+		<Type value="universal"/>
+		<References solid0="lower torso" solid1="upper torso"/>
+		<Anchor x="0.0" y="0.86" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="0.0" y="0.0" z="1.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-15.0"/>
+			<LimitHigh value="15.0"/>
+		</Axis>
+		<Axis>
+			<AxisNum value="1"/>
+			<Direction x="0.0" y="1.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-15.0"/>
+			<LimitHigh value="15.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="lower torso"/>
+		<Offset>
+			<Transform type="translate" x="0.0" y="0.75" z="0.0"/>
+		</Offset>
+		<Shape type="box">
+			<Dimensions x="0.18" y="0.27" z="0.04"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="waist joint"/>
+		<Type value="hinge"/>
+		<References solid0="pelvis" solid1="lower torso"/>
+		<Anchor x="0.0" y="0.58" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="0.0" y="1.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-20.0"/>
+			<LimitHigh value="20.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="pelvis"/>
+		<Offset>
+			<Transform type="translate" x="0.0" y="0.58" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="0.0" y="1.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.05" length="0.15"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="left hip"/>
+		<Type value="universal"/>
+		<BreakMode value="threshold"/>
+		<BreakThresh value="20000.0"/>
+		<References solid0="upper left leg" solid1="pelvis"/>
+		<Anchor x="0.08" y="0.58" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-135.0"/>
+			<LimitHigh value="45.0"/>
+		</Axis>
+		<Axis>
+			<AxisNum value="1"/>
+			<Direction x="0.0" y="0.0" z="1.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-30.0"/>
+			<LimitHigh value="30.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="upper left leg"/>
+		<Offset>
+			<Transform type="translate" x="0.08" y="0.43" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="1.0" y="0.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.04" length="0.26"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="right hip"/>
+		<Type value="universal"/>
+		<BreakMode value="threshold"/>
+		<BreakThresh value="20000.0"/>
+		<References solid0="upper right leg" solid1="pelvis"/>
+		<Anchor x="-0.08" y="0.58" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-135.0"/>
+			<LimitHigh value="45.0"/>
+		</Axis>
+		<Axis>
+			<AxisNum value="1"/>
+			<Direction x="0.0" y="0.0" z="1.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-30.0"/>
+			<LimitHigh value="30.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="upper right leg"/>
+		<Offset>
+			<Transform type="translate" x="-0.08" y="0.43" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="1.0" y="0.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.04" length="0.26"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="left knee"/>
+		<Type value="hinge"/>
+		<References solid0="lower left leg" solid1="upper left leg"/>
+		<Anchor x="0.08" y="0.3" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="0.0"/>
+			<LimitHigh value="165.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="lower left leg"/>
+		<Offset>
+			<Transform type="translate" x="0.08" y="0.17" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="1.0" y="0.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.03" length="0.26"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="right knee"/>
+		<Type value="hinge"/>
+		<References solid0="lower right leg" solid1="upper right leg"/>
+		<Anchor x="-0.08" y="0.3" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="0.0"/>
+			<LimitHigh value="165.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="lower right leg"/>
+		<Offset>
+			<Transform type="translate" x="-0.08" y="0.17" z="0.0"/>
+			<Transform type="rotate" angle="90.0" x="1.0" y="0.0" z="0.0"/>
+		</Offset>
+		<Shape type="capsule">
+			<Dimensions radius="0.03" length="0.26"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="left ankle"/>
+		<Type value="hinge"/>
+		<References solid0="left foot" solid1="lower left leg"/>
+		<Anchor x="0.08" y="0.04" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-45.0"/>
+			<LimitHigh value="60.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="left foot"/>
+		<Offset>
+			<Transform type="translate" x="0.08" y="0.02" z="0.045"/>
+		</Offset>
+		<Shape type="box">
+			<Dimensions x="0.075" y="0.04" z="0.15"/>
+		</Shape>
+	</Solid>
+	<Joint>
+		<Name value="right ankle"/>
+		<Type value="hinge"/>
+		<References solid0="right foot" solid1="lower right leg"/>
+		<Anchor x="-0.08" y="0.04" z="0.0"/>
+		<Axis>
+			<AxisNum value="0"/>
+			<Direction x="1.0" y="0.0" z="0.0"/>
+			<LimitsEnabled value="true"/>
+			<LimitLow value="-45.0"/>
+			<LimitHigh value="60.0"/>
+		</Axis>
+	</Joint>
+	<Solid>
+		<Name value="right foot"/>
+		<Offset>
+			<Transform type="translate" x="-0.08" y="0.02" z="0.045"/>
+		</Offset>
+		<Shape type="box">
+			<Dimensions x="0.075" y="0.04" z="0.15"/>
+		</Shape>
+	</Solid>
+</OpalBlueprint>

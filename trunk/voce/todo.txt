@@ -1,0 +1,44 @@
+For version 0.5.0
+=================
+
+* can java version take the class path from the existing init parameter instead of from the command line?
+
+* website
+	- main features
+		- synthesis: FreeTTS (description, link)
+		- recognition: CMU Sphinx4 (description, link)
+		- 120,000 words (using CMU Dictionary, link)
+		- recognition uses user-defined JSGF grammar files
+	- license
+		- LGPL, BSD
+		- be sure to read FreeTTS and Sphinx4 licenses
+	- documentation
+		- see readme.txt for installation
+		- simple Java apps
+		- simple C++ apps
+		- jsgf grammar file tutorial
+			- simple instructions
+				- 'Defines what kinds of words and phrases will be recognized.'
+				- 'The speech recognizer will search through the dictionary for words in the grammar file.'
+			- link to sphinx jsgf page
+			- sample files
+				- word list
+				- command application
+				- demonstrate 'keywords' (i.e. everything must be prefaced by a keyword)
+		- see demos in distribution
+		- doxygen (c++ and java versions)
+
+* put up on sourceforge
+
+Possible future ideas
+=====================
+
+* try out festvox voice importing
+
+* let users add stuff to dictionary file?
+	- dictionary file must be put somewhere accessible yet still specified in the config file
+	- replace vocabulary.txt
+	- write instructions for adding words/phonemes to dictionary
+
+* "SimpleBreadthFirstSearchManager and flatLinguist are good for small to medium vocabularies"; "WordPruningBreadthFirstSearchManager and lexTreeLinguist are better for larger vocabularies"
+	- experiment with these other options?
