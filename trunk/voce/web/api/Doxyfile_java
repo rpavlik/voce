@@ -4,8 +4,8 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 PROJECT_NAME           = "Voce Java API"
-PROJECT_NUMBER         = 0.5
-OUTPUT_DIRECTORY       = "C:/Documents and Settings/Tyler/Desktop/doc"
+PROJECT_NUMBER         = 0.9
+OUTPUT_DIRECTORY       = "C:/Documents and Settings/Tyler/Desktop/voce/web/api/java"
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = English
 USE_WINDOWS_ENCODING   = YES
@@ -80,7 +80,7 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = "C:/Documents and Settings/Tyler/Desktop/voce/voce/src/java"
+INPUT                  = "C:/Documents and Settings/Tyler/Desktop/voce/src/java"
 FILE_PATTERNS          = *.c \
                          *.cc \
                          *.cxx \
