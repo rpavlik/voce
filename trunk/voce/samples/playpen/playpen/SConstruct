@@ -12,7 +12,7 @@ opts.AddOptions(
 
 env = Environment(
 	ENV = os.environ,
-	LIBS = ['opal-ode', 'OgreMain'], 
+	LIBS = ['opal-ode', 'OgreMain', 'jvm'], 
 	options = opts
 )
 
