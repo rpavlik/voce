@@ -19,8 +19,8 @@ vocabulary.txt - a list of the words Voce can recognize (via Sphinx4)
 ------------------------------------
 List of dependencies
 ------------------------------------
-1. FreeTTS (included in this package) - freetts.sourceforge.net
-2. CMUSphinx4 (included in this package) - cmusphinx.sourceforge.net
+1. FreeTTS (version 1.2.1 included in this package) - freetts.sourceforge.net
+2. CMUSphinx4 (version 1.0beta included in this package) - cmusphinx.sourceforge.net
 3. Java 1.5 runtime environment; Java SDK required to build Voce from source
 4. Java Native Interface (JNI), usually included in the Java SDK; required for C++ applications
 
