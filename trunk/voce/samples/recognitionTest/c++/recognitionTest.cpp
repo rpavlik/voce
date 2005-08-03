@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 #ifdef WIN32
 		::Sleep(200);
 #else
-		sleep(0.2);
+		usleep(200);
 #endif
 
 		while (voce::getRecognizerQueueSize() > 0)
