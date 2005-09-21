@@ -34,7 +34,7 @@ public class recognitionTest
 			"./grammar", "digits");
 
 		System.out.println("This is a speech recognition test. " 
-			+ "Speak digits from 0-8 into the microphone. " 
+			+ "Speak digits from 0-9 into the microphone. " 
 			+ "Speak 'quit' to quit.");
 
 		boolean quit = false;

@@ -357,11 +357,8 @@ initialization.  Request will be ignored.");
 
 		// Convert string from Java to C++.  Be sure to release memory 
 		// when finished.
-
-		//char buf[128];
 		const char* tempStr = internal::gEnv->GetStringUTFChars(jstr, 0);
 		std::string cppStr = tempStr;
-		//printf("%s", str);
 		internal::gEnv->ReleaseStringUTFChars(jstr, tempStr);
 
 		return cppStr;
@@ -377,7 +374,7 @@ initialization.  Request will be ignored.");
 		}
 
 		// Call the Java method.
-		internal::gEnv->CallStaticIntMethod(internal::gClass, 
+		internal::gEnv->CallStaticVoidMethod(internal::gClass, 
 			internal::gSetRecognizerEnabledID, e);
 	}
 

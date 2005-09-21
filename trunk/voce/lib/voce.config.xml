@@ -73,7 +73,7 @@
         <property name="isCpuRelative" value="true"/>
         <property name="numThreads" value="0"/>
         <property name="minScoreablesPerThread" value="10"/>
-        <property name="scoreablesKeepFeature" value="true"/>
+        <property name="scoreablesKeepFeature" value="false"/>
     </component>
     
     <!-- ******************************************************** -->
@@ -223,6 +223,7 @@
     <component name="microphone" 
                type="edu.cmu.sphinx.frontend.util.Microphone">
         <property name="closeBetweenUtterances" value="false"/>
+        <property name="keepLastAudio" value="true"/>
     </component>
 
     

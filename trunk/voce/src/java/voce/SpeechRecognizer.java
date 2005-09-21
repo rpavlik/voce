@@ -51,8 +51,10 @@ public class SpeechRecognizer implements Runnable
 	/// avoid making applications wait for recognition to finish.
 	private volatile Thread mRecognitionThread = null;
 
-	/// A boolean that tracks whether the recognition thread is running.
-	private boolean mRecognitionThreadRunning = false;
+	/// A boolean that determines whether the recognition thread should be 
+	/// enabled.  This is used for communication between the main thread 
+	/// and the recognition thread.
+	private boolean mRecognitionThreadEnabled = false;
 
 	/// A queue of the recognized strings.
 	private LinkedList<String> mRecognizedStringQueue;
@@ -114,11 +116,8 @@ public class SpeechRecognizer implements Runnable
 	public void run()
 	{
 		Utils.log("debug", "Recognition thread starting");
-		mRecognitionThreadRunning = true;
-		//Thread currThread = Thread.currentThread();
 
-		//while (mRecognitionThread == currThread)
-		while (null != mRecognitionThread)
+		while (true == mRecognitionThreadEnabled)
 		{
 			if (!mMicrophone.isRecording())
 			{
@@ -144,7 +143,6 @@ public class SpeechRecognizer implements Runnable
 		}
 
 		Utils.log("debug", "Recognition thread finished");
-		mRecognitionThreadRunning = false;
 	}
 
 	/// Returns the number of recognized strings currently in the 
@@ -175,7 +173,9 @@ public class SpeechRecognizer implements Runnable
 	{
 		if (e)
 		{
+			Utils.log("debug", "Starting microphone...");
 			boolean success = mMicrophone.startRecording();
+			Utils.log("debug", "Microphone on");
 
 			if (!success)
 			{
@@ -188,23 +188,26 @@ public class SpeechRecognizer implements Runnable
 				if (null == mRecognitionThread)
 				{
 					mRecognitionThread = new Thread(this, "Recognition thread");
-					mRecognitionThread.start();
 				}
+
+				// Start running the recognition thread.
+				mRecognitionThreadEnabled = true;
+				mRecognitionThread.start();
 			}
 		}
 		else
 		{
-			//Utils.log("debug", "Clearing queues, stopping microphone...");
-			mRecognizedStringQueue.clear();
+			Utils.log("debug", "Stopping microphone...");
 			mMicrophone.stopRecording();
-			mMicrophone.clear();
+			Utils.log("debug", "Microphone off");
 
 			// The following line indirectly stops the recognition thread 
-			// from running.
-			mRecognitionThread = null;
+			// from running.  The next time the recognition thread checks 
+			// this variable, it will stop running.
+			mRecognitionThreadEnabled = false;
 
 			// Wait for the thread to die before proceeding.
-			while (mRecognitionThreadRunning)
+			while (mRecognitionThread.isAlive())
 			{
 				Utils.log("debug", "Waiting for recognition thread to die...");
 
@@ -218,7 +221,10 @@ public class SpeechRecognizer implements Runnable
 				}
 			}
 
-			//Utils.log("debug", "...done clearing queues, stopping microphone");
+			mMicrophone.clear();
+
+			Utils.log("debug", "Clearing recognized string queue");
+			mRecognizedStringQueue.clear();
 		}
 	}
 

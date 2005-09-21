@@ -21,8 +21,8 @@ List of dependencies
 ------------------------------------
 1. FreeTTS (version 1.2.1 included in this package) - freetts.sourceforge.net
 2. CMUSphinx4 (version 1.0beta included in this package) - cmusphinx.sourceforge.net
-3. Java 1.5 runtime environment; Java SDK required to build Voce from source
-4. Java Native Interface (JNI), usually included in the Java SDK; required for C++ applications
+3. Java 1.5 runtime environment; also, Java SDK required to build Voce from source
+4. Java Native Interface (JNI) (usually included in the Java SDK) required for C++ applications
 
 
 ------------------------------------
@@ -32,21 +32,21 @@ The term 'javadir' here refers to the root of your Java runtime environment inst
 
 The term 'class path' refers to the place where all Voce class files (packaged into jar files) are located.  This can be anywhere, as long as you tell Voce about the class path.
 
-Make sure the jvm library can be located at runtime.  In win32, the file 'jvm.dll' (usually in javadir\bin\client) must be in your path.  In UNIX, the file 'libjvm.so' must be in your library path.  Do NOT move these libraries out of their default locations; as of Java 2 SDK v1.2, they look for other runtime environment libraries relative to their own locations.
+Make sure the jvm library can be located at runtime.  In win32, the file 'jvm.dll' (usually in javadir\bin\client) must be in your "path" environment variable.  In UNIX, the file 'libjvm.so' must be in your library path environment variable.  Do NOT move these libraries out of their default locations; as of Java 2 SDK v1.2, they look for other runtime environment libraries relative to their own locations.
 
 
 ------------------------------------
 Library build instructions
 ------------------------------------
-Java - use the included build scripts (*.bat in win32, *.sh in UNIX); the Voce jar file should already be present in the 'lib' directory, so you won't need to build it
+Java - The Voce jar file should already be present in the 'lib' directory, so you won't need to build it... but if you want to build it anyway, use the included build scripts (*.bat in win32, *.sh in UNIX).
 
-C++ - same as Java instructions; the Voce Java jar is used by the C++ version via the Java Native Interface
+C++ - Same as Java instructions.  The Voce Java jar is used by the C++ version via the Java Native Interface.
 
 
 ------------------------------------
 Using Voce in your application
 ------------------------------------
-See the 'synthesisTest' and 'recognitionTest' sample applications for more details.
+See the 'synthesisTest' and 'recognitionTest' sample applications for examples.
 
 
 ------------------------------------
