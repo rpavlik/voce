@@ -185,10 +185,13 @@ public class SpeechRecognizer implements Runnable
 			}
 			else
 			{
-				if (null == mRecognitionThread)
+				if (null != mRecognitionThread)
 				{
-					mRecognitionThread = new Thread(this, "Recognition thread");
+					Utils.log("warning", "New recognition thread being " 
+						+ "created before the previous one finished.");
 				}
+
+				mRecognitionThread = new Thread(this, "Recognition thread");
 
 				// Start running the recognition thread.
 				mRecognitionThreadEnabled = true;
@@ -221,6 +224,7 @@ public class SpeechRecognizer implements Runnable
 				}
 			}
 
+			mRecognitionThread = null;
 			mMicrophone.clear();
 
 			Utils.log("debug", "Clearing recognized string queue");

@@ -2,6 +2,8 @@ Version 0.9.1
 (not yet released)
 ------------------------------------------
 
+	* 9-23-05: Fixed a bug in the SpeechRecognizer class that made it impossible to restart recognition after stopping it.
+
 	* 9-21-05: Fixed a bug in the SpeechRecognizer class that caused a deadlock when disabling speech recognition.  The deadlock only became apparent after testing it on a multi-core machine.
 
 
