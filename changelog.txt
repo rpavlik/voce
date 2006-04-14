@@ -1,5 +1,14 @@
-Version 0.9.1
+Version 0.9.2
 (not yet released)
+------------------------------------------
+
+	* 4-14-06: Made two changes to the C++ voce.h file: 1) changed an error message (related to the Voce class path) to be more clear, and 2) extended the size of a static internal character array (from 1024 to 4096 characters) in case the user-defined class path is really long.
+
+	* 4-14-06: Added "isSpeaking" to the API, which helps users determine when the synthesizer is finished.
+
+
+Version 0.9.1
+February 9, 2006
 ------------------------------------------
 
 	* 9-23-05: Fixed a bug in the SpeechRecognizer class that made it impossible to restart recognition after stopping it.

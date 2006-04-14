@@ -129,6 +129,20 @@ public class SpeechSynthesizer
 		mSynthesizer.speakPlainText(message, null);
 	}
 
+	/// Checks whether the synthesizer is currently active.
+	public boolean isSynthesizing()
+	{
+		if ((mSynthesizer.getEngineState() & Synthesizer.QUEUE_NOT_EMPTY)
+			 == Synthesizer.QUEUE_NOT_EMPTY)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	/// Stops synthesizing the current message and removes all pending 
 	/// messages from the queue.
 	public void stopSynthesizing()

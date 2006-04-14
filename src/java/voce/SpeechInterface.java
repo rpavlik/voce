@@ -120,6 +120,12 @@ public class SpeechInterface
 		mSynthesizer.synthesize(message);
 	}
 
+	/// Checks whether the speech synthesizer is currently synthesizing a message.
+	public static boolean isSynthesizing()
+	{
+		return mSynthesizer.isSynthesizing();
+	}
+
 	/// Tells the speech synthesizer to stop synthesizing.  This cancels all 
 	/// pending messages.
 	public static void stopSynthesizing()

@@ -38,7 +38,7 @@
 /// The namespace containing everything in the Voce C++ API.
 namespace voce
 {
-#ifdef WIN32
+#if defined(WIN32) || defined(_WIN32)
 const std::string pathSeparator = ";";
 #else
 const std::string pathSeparator = ":";
@@ -61,6 +61,7 @@ const std::string pathSeparator = ":";
 		jmethodID gInitID = NULL;
 		jmethodID gDestroyID = NULL;
 		jmethodID gSynthesizeID = NULL;
+		jmethodID gIsSynthesizingID = NULL;
 		jmethodID gStopSynthesizingID = NULL;
 		jmethodID gGetRecognizerQueueSizeID = NULL;
 		jmethodID gPopRecognizedStringID = NULL;
@@ -185,7 +186,7 @@ const std::string pathSeparator = ":";
 			std::string classPathString = "-Djava.class.path=";
 			classPathString += vocePath;
 			classPathString += "/voce.jar";
-			char s[1024];
+			char s[4096];
 			sprintf(s, classPathString.c_str());
 			options[0].optionString = s;
 			options[0].extraInfo = NULL;
@@ -213,8 +214,8 @@ const std::string pathSeparator = ":";
 		if (0 == c)
 		{
 			internal::log("ERROR", "The requested Java class: " 
-				+ internal::gClassName + " could not be found.  \
-Make sure the class path correctly points to the Voce classes.");
+				+ internal::gClassName + " could not be found.  Make \
+sure the Voce path given to 'init' correctly points to the Voce classes.");
 			return;
 		}
 
@@ -229,6 +230,8 @@ Make sure the class path correctly points to the Voce classes.");
 		internal::gDestroyID = internal::loadJavaMethodID("destroy", "()V");
 		internal::gSynthesizeID = internal::loadJavaMethodID("synthesize", 
 			"(Ljava/lang/String;)V");
+		internal::gIsSynthesizingID = internal::loadJavaMethodID(
+			"isSynthesizing", "()Z");
 		internal::gStopSynthesizingID = internal::loadJavaMethodID(
 			"stopSynthesizing", "()V");
 		internal::gGetRecognizerQueueSizeID = internal::loadJavaMethodID(
@@ -275,6 +278,7 @@ initialization.  Request will be ignored.");
 		internal::gEnv->DeleteGlobalRef((jobject)internal::gInitID);
 		internal::gEnv->DeleteGlobalRef((jobject)internal::gDestroyID);
 		internal::gEnv->DeleteGlobalRef((jobject)internal::gSynthesizeID);
+		internal::gEnv->DeleteGlobalRef((jobject)internal::gIsSynthesizingID);
 		internal::gEnv->DeleteGlobalRef(
 			(jobject)internal::gStopSynthesizingID);
 		internal::gEnv->DeleteGlobalRef(
@@ -311,13 +315,37 @@ initialization.  Request will be ignored.");
 			internal::gSynthesizeID, jstr);
 	}
 
+	/// Checks whether the speech synthesizer is currently synthesizing 
+	/// a message.
+	bool isSynthesizing()
+	{
+		if (!internal::gEnv)
+		{
+			internal::log("warning", "isSynthesizing called before \
+initialization.  Request will be ignored.");
+		}
+
+		// Call the Java method.
+		jboolean b = internal::gEnv->CallStaticBooleanMethod(internal::gClass, 
+			internal::gIsSynthesizingID);
+
+		if (JNI_FALSE == b)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
 	/// Tells the speech synthesizer to stop synthesizing.  This cancels all 
 	/// pending messages.
 	void stopSynthesizing()
 	{
 		if (!internal::gEnv)
 		{
-			internal::log("warning", "synthesize called before \
+			internal::log("warning", "stopSynthesizing called before \
 initialization.  Request will be ignored.");
 		}
 
