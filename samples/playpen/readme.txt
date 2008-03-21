@@ -1,5 +1,4 @@
 Voce 'Playpen' Sample Application
-voce.sourceforge.net
 
 This is a more complex application that uses Voce's speech synthesis and recognition capabilities.
 

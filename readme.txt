@@ -1,7 +1,9 @@
 Voce
-voce.sourceforge.net
+http://voce.sourceforge.net
+Copyright (c) 2005-2008
+Tyler Streeter (http://www.tylerstreeter.net)
 
-This file contains basic installation and usage info.  For more documentation, visit the website.
+This file contains basic installation and usage info.  For more documentation, visit the project website (http://voce.sourceforge.net).
 
 ------------------------------------
 Package contents
