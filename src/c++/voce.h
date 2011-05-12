@@ -154,9 +154,7 @@ const std::string pathSeparator = ":";
 			std::string classPathString = "-Djava.class.path=";
 			classPathString += vocePath;
 			classPathString += "/voce.jar";
-			char s[1024];
-			sprintf(s, classPathString.c_str());
-			options[0].optionString = s;
+			options[0].optionString = const_cast<char *>(classPathString.c_str());
 			options[0].extraInfo = NULL;
 
 			// Add an option to increase the max heap size.
@@ -184,9 +182,7 @@ const std::string pathSeparator = ":";
 			std::string classPathString = "-Djava.class.path=";
 			classPathString += vocePath;
 			classPathString += "/voce.jar";
-			char s[4096];
-			sprintf(s, classPathString.c_str());
-			options[0].optionString = s;
+			options[0].optionString = const_cast<char *>(classPathString.c_str());
 			options[0].extraInfo = NULL;
 			//options[1].optionString = "-Djava.compiler=NONE"; // Disable JIT.
 			//options[1].optionString = "-verbose:gc,class,jni";
