@@ -31,6 +31,7 @@
 #include <jni.h>
 #include <iostream>
 #include <string>
+#include <cstring>
 
 /// The namespace containing everything in the Voce C++ API.
 namespace voce
