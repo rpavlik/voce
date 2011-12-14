@@ -16,10 +16,10 @@ echo "Using this javac:	${JAVAC}"
 echo "Using this jar  :	${JAR}"
 echo
 
-${JAVAC} -classpath ../../../lib/freetts.jar:../../../lib/jsapi.jar:../../../lib/sphinx4.jar Utils.java SpeechSynthesizer.java SpeechRecognizer.java SpeechInterface.java
-cd ..
-${JAR} cmvf voce/MANIFEST.MF ../../lib/voce.jar voce/*.class
-cd ../../lib
-${JAR} uvf voce.jar gram/*.gram
-${JAR} i voce.jar
+${JAVAC} -classpath ../../../lib/freetts.jar:../../../lib/freetts-jsapi10.jar:../../../lib/jsapi.jar:../../../lib/sphinx4.jar Utils.java SpeechSynthesizer.java SpeechRecognizer.java SpeechInterface.java && \
+cd .. && \
+${JAR} cmvf voce/MANIFEST.MF ../../lib/voce.jar voce/*.class && \
+cd ../../lib && \
+${JAR} uvf voce.jar gram/*.gram && \
+${JAR} i voce.jar && \
 cd ../src/java/voce
