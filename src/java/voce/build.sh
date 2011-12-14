@@ -1,3 +1,5 @@
+#!/bin/sh
+
 if [ -x "${JDK_HOME}/bin/javac" ]; then
 	export JAVAC="${JDK_HOME}/bin/javac"
 else
