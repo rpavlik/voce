@@ -32,6 +32,7 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <vector>
 
 /// The namespace containing everything in the Voce C++ API.
 namespace voce
@@ -139,61 +140,39 @@ const std::string pathSeparator = ":";
 
 		long status = 0;
 
-		// If recognition is being used, we need to increase the max heap 
+		// If recognition is being used, we need to increase the max heap
 		// size.
+		std::vector<JavaVMOption> options;
+
+		// Add the required Java class paths.
+		std::string classPathString = "-Djava.class.path=";
+		classPathString += vocePath;
+		classPathString += "/voce.jar";
+		JavaVMOption classpathoption;
+		classpathoption.optionString = const_cast<char *>(classPathString.c_str());
+		classpathoption.extraInfo = NULL;
+		options.push_back(classpathoption);
+
 		if (initRecognition)
 		{
-			vm_args.nOptions = 2;
-
-			// Setup the VM options.
-			// TODO: check out other options to be used here, like disabling the 
-			// JIT compiler.
-			JavaVMOption options[2];
-
-			// Add the required Java class paths.
-			std::string classPathString = "-Djava.class.path=";
-			classPathString += vocePath;
-			classPathString += "/voce.jar";
-			options[0].optionString = const_cast<char *>(classPathString.c_str());
-			options[0].extraInfo = NULL;
-
 			// Add an option to increase the max heap size.
-			options[1].optionString = "-Xmx256m";
-			options[1].extraInfo = NULL;
-			//options[1].optionString = "-Djava.compiler=NONE"; // Disable JIT.
-			//options[1].optionString = "-verbose:gc,class,jni";
-			vm_args.options = options;
-			//vm_args.ignoreUnrecognized = JNI_FALSE;
+			JavaVMOption heapsizeoption;
+			heapsizeoption.optionString = "-Xmx256m";
+			heapsizeoption.extraInfo = NULL;
+			options.push_back(heapsizeoption);
 
-			// Create the VM.
-			status = JNI_CreateJavaVM(&internal::gJVM, 
-				(void**)&internal::gEnv, &vm_args);
 		}
-		else
 		{
-			vm_args.nOptions = 1;
+			// Use headless AWT
+			JavaVMOption headlessoption;
+			headlessoption.optionString = "-Djava.awt.headless=true";
+			headlessoption.extraInfo = NULL;
+			options.push_back(headlessoption);
 
-			// Setup the VM options.
-			// TODO: check out other options to be used here, like disabling the 
-			// JIT compiler.
-			JavaVMOption options[1];
-
-			// Add the required Java class paths.
-			std::string classPathString = "-Djava.class.path=";
-			classPathString += vocePath;
-			classPathString += "/voce.jar";
-			options[0].optionString = const_cast<char *>(classPathString.c_str());
-			options[0].extraInfo = NULL;
-			//options[1].optionString = "-Djava.compiler=NONE"; // Disable JIT.
-			//options[1].optionString = "-verbose:gc,class,jni";
-			vm_args.options = options;
-			//vm_args.ignoreUnrecognized = JNI_FALSE;
-
-			// Create the VM.
-			status = JNI_CreateJavaVM(&internal::gJVM, 
-				(void**)&internal::gEnv, &vm_args);
 		}
-
+		// Create the VM.
+		status = JNI_CreateJavaVM(&internal::gJVM,
+			(void**)&internal::gEnv, &vm_args);
 		if (status < 0)
 		{
 			internal::log("ERROR", "Java virtual machine cannot be created");
