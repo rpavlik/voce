@@ -2,3 +2,5 @@ src/java/voce/SpeechInterface.class
 src/java/voce/SpeechRecognizer.class
 src/java/voce/SpeechSynthesizer.class
 src/java/voce/Utils.class
+deploy/
+build/
