@@ -1,0 +1,40 @@
+<project name="synthesisTest" basedir="." default="clean-build">
+
+    <property name="voce-deploy.dir"  value="../deploy"/>
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+    
+    <path id="classpath">
+        <fileset dir="${voce-deploy.dir}" includes="**/*.jar"/>
+    </path>
+    
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="compile-recognitionTest,compile-synthesisTest" />
+
+    <target name="compile-recognitionTest">
+        <mkdir dir="${jar.dir}"/>
+        <mkdir dir="${classes.dir}/recognitionTest"/>
+        <javac srcdir="recognitionTest/java" destdir="${classes.dir}/recognitionTest" classpathref="classpath"/>
+        <jar destfile="${jar.dir}/recognitionTest.jar" basedir="${classes.dir}/recognitionTest">
+            <manifest>
+                <attribute name="Main-Class" value="recognitionTest"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="compile-synthesisTest">
+        <mkdir dir="${jar.dir}"/>
+        <mkdir dir="${classes.dir}/synthesisTest"/>
+        <javac srcdir="synthesisTest/java" destdir="${classes.dir}/synthesisTest" classpathref="classpath"/>
+        <jar destfile="${jar.dir}/synthesisTest.jar" basedir="${classes.dir}/synthesisTest">
+            <manifest>
+                <attribute name="Main-Class" value="synthesisTest"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="clean-build" depends="clean,compile"/>
+</project>

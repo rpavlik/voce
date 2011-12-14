@@ -1,0 +1,55 @@
+<project name="voce" basedir="." default="deploy">
+    <property name="src.dir"     value="src"/>
+
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="deploy.dir"  value="deploy"/>
+
+    <property name="freetts.dir" value="lib/freetts"/>
+    <property name="sphinx4.dir" value="lib/sphinx4"/>
+    <property name="jsapi.dir" value="lib/jsapi"/>
+
+    <path id="classpath">
+        <fileset dir="${jsapi.dir}" includes="**/*.jar"/>
+        <fileset dir="${freetts.dir}" includes="**/*.jar"/>
+        <fileset dir="${sphinx4.dir}" includes="**/*.jar"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${deploy.dir}"/>
+        <ant dir="samples" target="clean" />
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="oata.HelloWorld"/>
+                <attribute name="Class-Path" value="cmu_us_kal.jar cmulex.jar en_us.jar freetts.jar freetts-jsapi10.jar jsapi.jar sphinx4.jar WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz.jar"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="deploy" depends="jar">
+        <mkdir dir="${deploy.dir}"/>
+        <copy todir="${deploy.dir}">
+            <path refid="classpath"/>
+        </copy>
+        <copy todir="${deploy.dir}">
+            <path location="${jar.dir}/${ant.project.name}.jar"/>
+        </copy>
+    </target>
+
+    <target name="samples" depends="deploy">
+        <ant dir="samples"/>
+    </target>
+
+    <target name="clean-build" depends="clean,deploy"/>
+</project>
