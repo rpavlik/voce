@@ -6,9 +6,10 @@
     <property name="jar.dir"     value="${build.dir}/jar"/>
     <property name="deploy.dir"  value="deploy"/>
 
+    <property name="data.dir"    value="lib"/>
     <property name="freetts.dir" value="lib/freetts"/>
     <property name="sphinx4.dir" value="lib/sphinx4"/>
-    <property name="jsapi.dir" value="lib/jsapi"/>
+    <property name="jsapi.dir"   value="lib/jsapi"/>
 
     <path id="classpath">
         <fileset dir="${jsapi.dir}" includes="**/*.jar"/>
@@ -17,8 +18,8 @@
     </path>
 
     <target name="clean">
-        <delete dir="${build.dir}"/>
-        <delete dir="${deploy.dir}"/>
+        <delete dir="${build.dir}" failonerror="false"/>
+        <delete dir="${deploy.dir}" failonerror="false"/>
         <ant dir="samples" target="clean" />
     </target>
 
@@ -38,13 +39,13 @@
     </target>
 
     <target name="deploy" depends="jar">
-        <mkdir dir="${deploy.dir}"/>
+        <mkdir dir="${deploy.dir}/gram"/>
         <copy todir="${deploy.dir}">
             <path refid="classpath"/>
         </copy>
-        <copy todir="${deploy.dir}">
-            <path location="${jar.dir}/${ant.project.name}.jar"/>
-        </copy>
+        <copy file="${jar.dir}/${ant.project.name}.jar" todir="${deploy.dir}"/>
+        <copy file="${data.dir}/voce.config.xml" todir="${deploy.dir}"/>
+        <copy file="${data.dir}/gram/digits.gram" todir="${deploy.dir}/gram"/>
     </target>
 
     <target name="samples" depends="deploy">
