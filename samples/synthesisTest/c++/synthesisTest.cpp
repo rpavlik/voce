@@ -25,9 +25,16 @@
 /// A sample application showing how to use Voce's speech synthesis 
 /// capabilities.
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	voce::init("../../../lib", true, false, "", "");
+	if (argv[1] != NULL) {
+		std::cout << "Using user specified lib location for jars." << std::endl;
+		voce::init(argv[1], true, false, "", "");
+	} else {
+		std::cout << "Using default lib location for jars." << std::endl;
+		std::cout << "If this doesn't work, try passing as an argument the location." << std::endl;
+		voce::init("../../../lib", true, false, "", "");
+	}
 
 	voce::synthesize("This is a speech synthesis test.");
 	voce::synthesize("Type a message to hear it spoken aloud.");
