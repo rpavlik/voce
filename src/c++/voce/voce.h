@@ -170,6 +170,17 @@ const std::string pathSeparator = ":";
 			options.push_back(headlessoption);
 
 		}
+		{
+			// Be vewwy, vewwy vewbose
+			JavaVMOption verboseoption;
+			//verboseoption.optionString = "-verbose:gc,class,jni";
+			verboseoption.optionString = "-Xcheck:jni";
+			verboseoption.extraInfo = NULL;
+			options.push_back(verboseoption);
+
+		}
+		vm_args.options = &(options[0]);
+		vm_args.nOptions = options.size();
 		// Create the VM.
 		status = JNI_CreateJavaVM(&internal::gJVM,
 			(void**)&internal::gEnv, &vm_args);
