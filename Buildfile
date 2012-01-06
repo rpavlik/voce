@@ -1,4 +1,4 @@
-repositories.remote << 'http://repository.apache.org/' << "http://repo2.maven.org/maven2"
+repositories.remote << 'https://repository.apache.org/content/groups/public/'
 
 define 'voce' do
   project.version = '0.9.1'
